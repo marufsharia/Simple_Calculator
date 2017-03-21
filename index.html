@@ -1,296 +1,237 @@
 <html>
-	
-	<head>
-		
-		<title>Calculator</title>
-	</head>
-	<body>
-		<center>
-			
-			<h1>Simple Calculator</h1>
-			<form name ="Calculator">
-				<table border="1">
-					<tr>
-						<td>
-							<input type="text" name="display"   onkeypress='return isNumberKey(event)' onkeydown="myFunction(event)" />
-						</td>
-						<td>
-							<input type="button" value="bksp"onclick="btn_bksp()"/>
-						</td>
-						<td>
-							<input type="button" value="Clear"onclick="btn_clear()"/>
-						</td>
-						
-					</tr>
-					
-				</table>
-				
-				<table border="1">
-					<!--1st coloum -->
-					<tr>
-						<td>
-							<input type="button" value="7"onclick="document.Calculator.display.value+='7'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="8"onclick="document.Calculator.display.value+='8'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="9"onclick="document.Calculator.display.value+='9'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="/ "onclick="btn_div()"/>
-						</td>
-					</tr>
-					
-					<!--2nd coloum -->
-					<tr>
-						<td>
-							<input type="button" value="4"onclick="document.Calculator.display.value+='4'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="5"onclick="document.Calculator.display.value+='5'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="6"onclick="document.Calculator.display.value+='6'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="* "onclick="btn_mul()"/>
-						</td>
-					</tr>
-					<!--3rd coloum -->
-					<tr>
-						<td>
-							<input type="button" value="1"onclick="document.Calculator.display.value+='1'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="2"onclick="document.Calculator.display.value+='2'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="3"onclick="document.Calculator.display.value+='3'"/>
-						</td>
-						
-						<td>
-							<input type="button" value="- "onclick="btn_minus()"/>
-						</td>
-						</tr
-						<!--4th coloum -->
-						<tr>
-							<td>
-								<input type="button" value="0"onclick="document.Calculator.display.value+='0'"/>
-							</td>
-							
-							<td>
-								<input type="button" value=". "onclick="btn_point()"/>
-							</td>
-							
-							<td>
-								<input type="button" value="="onclick="btn_equal()"/>
-							</td>
-							
-							<td>
-								<input type="button" value="+"onclick="btn_plus()"/>
-							</td>
-						</tr>	
-						
-					</table>
-					
-				</form>
-				<br/>
-				<hr/>
-				<h2>Keyboard shortcut</h2>
-				<hr/>
-				
-					<li>Spacebar: calculate Result</li>
-					<li>Delete: Clear</li>
-					<li>Backspace: delete last charcter </li>
-				
-			</center>
-			
-			<script type="text/javascript">
-				var opt=null;
-				var num1=null;
-				var num2=null;
-				
-				//addition
-				function btn_plus()
-				{
-					num1=Number(document.Calculator.display.value);
-					opt='+';
-					document.Calculator.display.value=' ';
-					
-					
-					
-				}
-				
-				//substraction
-				function btn_minus()
-				{
-					num1=Number(document.Calculator.display.value);
-					opt='-';
-					document.Calculator.display.value=' ';
-					
-				}
-				//multiplication
-				
-				function btn_mul()
-				{
-					num1=Number(document.Calculator.display.value);
-					opt='*';
-					document.Calculator.display.value=' ';
-					
-				}
-				
-				//division
-				function btn_div()
-				{
-					num1=Number(document.Calculator.display.value);
-					opt='/';
-					document.Calculator.display.value=' ';
-				}
-				
-				
-				function btn_equal(){
-					
-					var result=null;
-					num2=Number(document.Calculator.display.value);
-					
-					if (opt=="+")
-					{
-						
-						result=num1+num2;
-					}
-					else if (opt=="-")
-					{
-						
-						result=num1-num2;
-					} 
-					else if (opt=="*")
-					{
-						
-						result=num1*num2;
-					} 
-					else if (opt=="/")
-					{
-						if (num2>0)
-						{
-							result=num1/num2;
-						}
-						else
-						{
-							result ="can't devided by zero";
-						}
-						
-					} 
-					
-					document.Calculator.display.value=result;
-				}
-				
-				//clear()
-				function btn_clear()
-				{
-					document.Calculator.display.value='';
-					num1=null;
-					num2=null;
-					result=null;
-					
-					
-				}
-				
-				//backspace()
-				function btn_bksp()
-				{
-					document.Calculator.display.value=document.Calculator.display.value.slice(0,document.Calculator.display.value.length-1);
-					
-					
-					
-				}
-				
-				//point count
-				function btn_point()
-				{
-					var n=document.Calculator.display.value;
-					
-					if (n.includes("."))
-					{
-					}
-					else
-					{
-						document.Calculator.display.value+='.';
-					}
-					
-				}
-				
-				function isNumberKey(evt)
-					{		
-						
-								try{
-									var charCode = (evt.which) ? evt.which : event.keyCode;
-									//for point 
-									if(charCode==46)
-									{
-										btn_point();
-									}
-									//
-									if (charCode > 31 && (charCode < 48 || charCode > 57) )
-										return false;
 
-									return true;
-								}
-								catch(w){
-									//alert(w);
-								}
-								
-								
-					}
-				
-							
-				
-				
-				
-				
-			</script>
-			<script>
-					function myFunction(event) {
-						var x = event.keyCode;               // Get the Unicode value
-						var y = String.fromCharCode(x);      // Convert the value into a character
-						if (x==46)
-						{
-							btn_clear();
-						}
-						if (x==8)
-						{
-							btn_bksp();
-						}
-						if (x==32)
-						{
-							btn_equal();
-						}
-						if (x==191 || x==111)  
-						{
-							btn_div();
-						}
-						if (x==106 || x==106)
-						{
-							btn_mul();
-						}
-						if (x==109 || x==189)
-						{
-							btn_minus();
-						}
-						if (x==107 || x==187)
-						{
-							btn_plus();
-						}
-				
-					}
-				</script>
-		</body>
-	</html>		
+<head>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <center>
+        <h1>Simple Calculator</h1>
+        <form name="Calculator">
+            <table border="1">
+                <tr>
+                    <td>
+                        <input type="text" name="display" onkeypress='return isNumberKey(event)' onkeydown="myFunction(event)" />
+                    </td>
+                    <td>
+                        <input type="button" value="bksp" onclick="btn_bksp()" />
+                    </td>
+                    <td>
+                        <input type="button" value="Clear" onclick="btn_clear()" />
+                    </td>
+                </tr>
+            </table>
+            <table border="1">
+                <!--1st coloum -->
+                <tr>
+                    <td>
+                        <input type="button" value="7" onclick="document.Calculator.display.value+='7'" />
+                    </td>
+                    <td>
+                        <input type="button" value="8" onclick="document.Calculator.display.value+='8'" />
+                    </td>
+                    <td>
+                        <input type="button" value="9" onclick="document.Calculator.display.value+='9'" />
+                    </td>
+                    <td>
+                        <input type="button" value="/ " onclick="btn_div()" />
+                    </td>
+                </tr>
+                <!--2nd coloum -->
+                <tr>
+                    <td>
+                        <input type="button" value="4" onclick="document.Calculator.display.value+='4'" />
+                    </td>
+                    <td>
+                        <input type="button" value="5" onclick="document.Calculator.display.value+='5'" />
+                    </td>
+                    <td>
+                        <input type="button" value="6" onclick="document.Calculator.display.value+='6'" />
+                    </td>
+                    <td>
+                        <input type="button" value="* " onclick="btn_mul()" />
+                    </td>
+                </tr>
+                <!--3rd coloum -->
+                <tr>
+                    <td>
+                        <input type="button" value="1" onclick="document.Calculator.display.value+='1'" />
+                    </td>
+                    <td>
+                        <input type="button" value="2" onclick="document.Calculator.display.value+='2'" />
+                    </td>
+                    <td>
+                        <input type="button" value="3" onclick="document.Calculator.display.value+='3'" />
+                    </td>
+                    <td>
+                        <input type="button" value="- " onclick="btn_minus()" />
+                    </td>
+                </tr <!--4th coloum -->
+                <tr>
+                    <td>
+                        <input type="button" value="0" onclick="document.Calculator.display.value+='0'" />
+                    </td>
+                    <td>
+                        <input type="button" value=". " onclick="btn_point()" />
+                    </td>
+                    <td>
+                        <input type="button" value="=" onclick="btn_equal()" />
+                    </td>
+                    <td>
+                        <input type="button" value="+" onclick="btn_plus()" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br/>
+        <hr/>
+        <h2>Keyboard shortcut</h2>
+        <hr/>
+        <li>Spacebar: calculate Result</li>
+        <li>Delete: Clear</li>
+        <li>Backspace: delete last charcter </li>
+    </center>
+    <script type="text/javascript">
+        var opt = null;
+        var num1 = null;
+        var num2 = null;
+
+        //addition
+        function btn_plus() {
+            num1 = Number(document.Calculator.display.value);
+            opt = '+';
+            document.Calculator.display.value = ' ';
+
+
+
+        }
+
+        //substraction
+        function btn_minus() {
+            num1 = Number(document.Calculator.display.value);
+            opt = '-';
+            document.Calculator.display.value = ' ';
+
+        }
+        //multiplication
+
+        function btn_mul() {
+            num1 = Number(document.Calculator.display.value);
+            opt = '*';
+            document.Calculator.display.value = ' ';
+
+        }
+
+        //division
+        function btn_div() {
+            num1 = Number(document.Calculator.display.value);
+            opt = '/';
+            document.Calculator.display.value = ' ';
+        }
+
+
+        function btn_equal() {
+
+            var result = null;
+            num2 = Number(document.Calculator.display.value);
+
+            if (opt == "+") {
+
+                result = num1 + num2;
+            } else if (opt == "-") {
+
+                result = num1 - num2;
+            } else if (opt == "*") {
+
+                result = num1 * num2;
+            } else if (opt == "/") {
+                if (num2 > 0) {
+                    result = num1 / num2;
+                } else {
+                    result = "can't devided by zero";
+                }
+
+            }
+
+            document.Calculator.display.value = result;
+        }
+
+        //clear()
+        function btn_clear() {
+            document.Calculator.display.value = '';
+            num1 = null;
+            num2 = null;
+            result = null;
+
+
+        }
+
+        //backspace()
+        function btn_bksp() {
+            document.Calculator.display.value = document.Calculator.display.value.slice(0, document.Calculator.display.value.length - 1);
+
+
+
+        }
+
+        //point count
+        function btn_point() {
+            var n = document.Calculator.display.value;
+
+            if (n.includes(".")) {} else {
+                document.Calculator.display.value += '.';
+            }
+
+        }
+
+        function isNumberKey(evt) {
+
+            try {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                //for point 
+                if (charCode == 46) {
+                    btn_point();
+                }
+                //
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            } catch (w) {
+                //alert(w);
+            }
+
+
+        }
+    </script>
+    <script>
+        function myFunction(event) {
+            var x = event.keyCode; // Get the Unicode value
+            var y = String.fromCharCode(x); // Convert the value into a character
+            if (x == 46) {
+                btn_clear();
+            }
+            if (x == 8) {
+                btn_bksp();
+            }
+            if (x == 32) {
+                btn_equal();
+            }
+            if (x == 191 || x == 111) {
+                btn_div();
+            }
+            if (x == 106 || x == 106) {
+                btn_mul();
+            }
+            if (x == 109 || x == 189) {
+                btn_minus();
+            }
+            if (x == 107 || x == 187) {
+                btn_plus();
+            }
+
+        }
+    </script>
+</body>
+
+</html>
